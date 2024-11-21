@@ -1,145 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de inicio</title>
-    <!-- iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <title>Iniciar sesión</title>
     <style>
+        /* Fondo transparente con la imagen */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            background-image: url('1.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat; 
             display: flex;
-            flex-direction: column;
-            height: 100vh;
-        
-        }
-
-       
-        .logo-container {
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-
-        .logo-container img {
-            height: 120px; 
-        }
-
-        
-        .header-text {
-            text-align: center;
-            margin-top: 80px; 
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Línea divisora */
-        .divider {
-            width: 80%;
-            margin: 20px auto;
-            border-bottom: 2px solid #ccc;
-        }
-
-       
-        .button-container {
-            text-align: center;
-            margin-top: 70px;
-        }
-
-        .button-container a {
-            display: inline-block;
-            margin: 0 15px;
-            padding: 15px 30px;
-            background-color: #332F2C;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        .button-container a:hover {
-            background-color: #45a049;
-        }
-
-        
-        .bottom-buttons {
-            display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            margin-top: auto; 
-            margin-bottom: 20px;
+            height: 100vh;
+            margin: 0;
+            opacity: 10;
+        }
+        
+        .login-container {
+            background-color: rgba(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
         }
 
-        .bottom-buttons button {
-            background-color: #35CEEB;
-            color: white;
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            border-radius: 4px;
         }
 
-        .bottom-buttons button:hover {
+        button:hover {
             background-color: #45a049;
         }
 
-        .bottom-buttons i {
-            margin-right: 10px;
+        /*  mensaje de error */
+        #error-message {
+            color: red;
+            display: none;
         }
-
     </style>
 </head>
 <body>
-
-    <!-- -->
-    <div class="logo-container">
-        <img src="2.jpg" alt="Logo 1">
-        <img src="3.jpg" alt="Logo 2">
+    <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form" onsubmit="return validarLogin(event)">
+            <input type="text" id="username" name="username" placeholder="Usuario" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="error-message">Usuario o contraseña incorrectos.</p>
     </div>
 
-    <!--  -->
- 
-    <div class="header-text">
-        <h2>Universidad de Ciencias y Artes de Chiapas</h2>
-        <h4>Ingeniería Ambiental</h4>
-        <h5>"APROVECHAMIENTO DE RECURSOS DISPONIBLES EN UN INVERNADERO MEDIANTE UN SISTEMA EMBEBIDO"</h5>
-    </div>
+    <script>
+        
+        function validarLogin(event) {
+            event.preventDefault(); 
 
-    <!-- Línea -->
-    <div class="divider"></div>
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-    <!-- Botones centrados -->
-    <div class="button-container">
-        <a href="https://www.ejemplo1.com" target="_blank">Servidor local</a>
-        <a href="https://io.adafruit.com/Enviromental_green/dashboards/oscaraaa" target="_blank">Adafruit IO</a>
-    </div>
+            // Usuario y contraseña
+            const usuarioCorrecto = 'oscar';
+            const contrasenaCorrecta = 'greenhouse';
 
-    <!-- Botones -->
-    <div class="bottom-buttons">
- <a href="https://repositorio.unicach.mx/handle/20.500.12753/1989" target="_blank">
-        <button><i class="fas fa-link"></i> Tesis</button>
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=garciagarciaoscaralejandro8@gmail.com">
-        <button><i class="fas fa-envelope"></i></button>
-<a href="https://github.com/MokaSama/Tesis" target="_blank">
-        <button><i class="fab fa-github"></i> </button>
-    </div>
-<!-- Línea -->
-    <div class="divider"></div>
-
-
-    </div>
-
+            
+            if (username === usuarioCorrecto && password === contrasenaCorrecta) {
+                
+                window.location.href = ' https://mokasama.github.io/Tesis/';
+            } else {
+            
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
